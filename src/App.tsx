@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import type { ChangeEvent } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -207,7 +208,7 @@ export default function App() {
           <CardContent className="grid grid-cols-2 gap-3">
             <div className="col-span-2">
               <Label>Enter constant by</Label>
-              <Select value={constMode} onValueChange={(v) => setConstMode(v as any)}>
+              <Select value={constMode} onValueChange={(v: string) => setConstMode(v as any)}>
                 <SelectTrigger><SelectValue placeholder="Mode" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="KT">Torque constant (Kt)</SelectItem>
@@ -217,23 +218,23 @@ export default function App() {
             </div>
             <div>
               <Label>Torque constant Kt (Nm/A)</Label>
-              <Input type="number" step="0.001" value={constMode === "KT" ? KtState : Kt} disabled={constMode !== "KT"} onChange={(e) => setKtState(number(e.target.value))} />
+              <Input type="number" step="0.001" value={constMode === "KT" ? KtState : Kt} disabled={constMode !== "KT"} onChange={(e: ChangeEvent<HTMLInputElement>) => setKtState(number(e.target.value))} />
             </div>
             <div>
               <Label>Speed constant Kv (rpm/V)</Label>
-              <Input type="number" step="0.1" value={constMode === "KV" ? KvState : Kv} disabled={constMode !== "KV"} onChange={(e) => setKvState(number(e.target.value))} />
+              <Input type="number" step="0.1" value={constMode === "KV" ? KvState : Kv} disabled={constMode !== "KV"} onChange={(e: ChangeEvent<HTMLInputElement>) => setKvState(number(e.target.value))} />
             </div>
             <div>
               <Label>Line‑to‑Line R (Ω)</Label>
-              <Input type="number" step="0.001" value={Rll} onChange={(e) => setRll(number(e.target.value))} />
+              <Input type="number" step="0.001" value={Rll} onChange={(e: ChangeEvent<HTMLInputElement>) => setRll(number(e.target.value))} />
             </div>
             <div>
               <Label>Line‑to‑Line L (µH)</Label>
-              <Input type="number" step="1" value={Lll_uH} onChange={(e) => setLll_uH(number(e.target.value))} />
+              <Input type="number" step="1" value={Lll_uH} onChange={(e: ChangeEvent<HTMLInputElement>) => setLll_uH(number(e.target.value))} />
             </div>
             <div>
               <Label>Winding</Label>
-              <Select value={winding} onValueChange={(v) => setWinding(v as any)}>
+              <Select value={winding} onValueChange={(v: string) => setWinding(v as any)}>
                 <SelectTrigger><SelectValue placeholder="Winding" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="DELTA">Delta (Δ)</SelectItem>
@@ -243,7 +244,7 @@ export default function App() {
             </div>
             <div>
               <Label>Copper Temp (°C)</Label>
-              <Input type="number" step="1" value={copperTempC} onChange={(e) => setCopperTempC(number(e.target.value))} />
+              <Input type="number" step="1" value={copperTempC} onChange={(e: ChangeEvent<HTMLInputElement>) => setCopperTempC(number(e.target.value))} />
             </div>
             <div className="col-span-2 text-sm opacity-80 space-y-1">
               <div>Per‑phase Rφ = <b>{Rphase.toFixed(3)} Ω</b></div>
@@ -282,7 +283,7 @@ export default function App() {
             <div className="text-sm flex items-end">Phase voltage limit ≈ <b className="ml-1">{VphaseMax.toFixed(2)} V</b></div>
             <div className="col-span-2">
               <Label>Mode</Label>
-              <Select value={mode} onValueChange={(v) => setMode(v as any)}>
+              <Select value={mode} onValueChange={(v: string) => setMode(v as any)}>
                 <SelectTrigger><SelectValue placeholder="Mode" /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="CONC">Concentric (motoring)</SelectItem>
